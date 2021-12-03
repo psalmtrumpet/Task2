@@ -14,7 +14,8 @@ class _CalculatorState extends State<Calculator> {
   dynamic text = '0';
   double numOne = 0;
   double numTwo = 0;
-
+  dynamic title2 = "0";
+dynamic color2 = const Color(0x282c35);
   dynamic result = '';
   dynamic finalResult = '';
   dynamic opr = '';
@@ -118,27 +119,42 @@ class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorLight,//darkMode ? colorDark : colorLight,
+      backgroundColor: darkMode ? Color.fromRGBO(41, 45, 54, 100) : Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         darkMode ? darkMode = false : darkMode = true;
-                    //       });
-                    //     },
-                    //     child: _switchMode()),
-                    SizedBox(height: 80),
-                    Align(
-                      alignment: Alignment.centerRight,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+             // width: MediaQuery.of(context).size.width-117,
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          darkMode ? darkMode = false : darkMode = true;
+                        });
+                      },
+                      child: _switchMode()),
+                  SizedBox(height: 80),
+                   Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Text(
+                           '$title2',
+                        style: TextStyle(
+                            fontSize: 55,
+                            fontWeight: FontWeight.bold,
+                            color: darkMode ? Colors.white : Colors.black),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 15),
                       child: Text(
                            '$text',
                         style: TextStyle(
@@ -147,96 +163,115 @@ class _CalculatorState extends State<Calculator> {
                             color: darkMode ? Colors.white : Colors.black),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Text(
-                        //   '=',
-                        //   style: TextStyle(
-                        //       fontSize: 35,
-                        //       color: darkMode ? Colors.green : Colors.grey),
-                        // ),
-                        // Text(
-                        //   '10+500*12',
-                        //   style: TextStyle(
-                        //       fontSize: 20,
-                        //       color: darkMode ? Colors.green : Colors.grey),
-                        // )
-                      ],
-                    ),
-                  
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(children: [
-                
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buttonRounded(
-                          title: 'AC',
-                          textColor:
-                              darkMode ? Colors.green : Colors.green),
-                      _buttonRounded(title: '+/-'),
-                      _buttonRounded(title: '%'),
-                      _buttonRounded(
-                          title: '/',
-                          textColor: darkMode ? Colors.green : Colors.redAccent)
-                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Text(
+                      //   '=',
+                      //   style: TextStyle(
+                      //       fontSize: 35,
+                      //       color: darkMode ? Colors.green : Colors.grey),
+                      // ),
+                      // Text(
+                      //   '$title2',
+                      //   style: TextStyle(
+                      //       fontSize: 20,
+                      //       color: darkMode ? Colors.black : Colors.black),
+                      // )
+                    ],
+                  ),
+                
+                ],
+              ),
+            ),
+            Container(
+              
+              decoration: BoxDecoration(
+                color: darkMode ? Color.fromRGBO(41, 45, 54, 100) : Color.fromRGBO(248, 248, 248, 100),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+                
+                
+                
+                
+                )
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(children: [
+                SizedBox(height: 20,),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buttonRounded(
+                            title: 'AC',
+                            textColor:
+                                darkMode ? Color.fromRGBO(53, 213, 183, 100) : Color.fromRGBO(53, 213, 183, 100)),
+                        _buttonRounded(title: '+/-',  textColor:
+                                darkMode ? Color.fromRGBO(53, 213, 183, 100) : Color.fromRGBO(53, 213, 183, 100)),
+                        _buttonRounded(title: '%',  textColor:
+                                darkMode ? Color.fromRGBO(53, 213, 183, 100) : Color.fromRGBO(53, 213, 183, 100)),
+                        _buttonRounded(
+                            title: '/',
+                            textColor: darkMode ? Colors.redAccent : Colors.redAccent)
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buttonRounded(title: '7'),
                       _buttonRounded(title: '8'),
                       _buttonRounded(title: '9'),
                       _buttonRounded(
                           title: 'x',
-                          textColor: darkMode ? Colors.green : Colors.redAccent)
+                          textColor: darkMode ? Color.fromRGBO(233, 102, 104, 100) : Color.fromRGBO(233, 102, 104, 100))
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buttonRounded(title: '4'),
                       _buttonRounded(title: '5'),
                       _buttonRounded(title: '6'),
                       _buttonRounded(
                           title: '-',
-                          textColor: darkMode ? Colors.green : Colors.redAccent)
+                          textColor: darkMode ? Color.fromRGBO(233, 102, 104, 100): Color.fromRGBO(233, 102, 104, 100))
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buttonRounded(title: '1'),
                       _buttonRounded(title: '2'),
                       _buttonRounded(title: '3'),
                       _buttonRounded(
                           title: '+',
-                          textColor: darkMode ? Colors.white : Colors.redAccent)
+                          textColor: darkMode ? Color.fromRGBO(233, 102, 104, 100) : Color.fromRGBO(233, 102, 104, 100))
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                         _buttonRounded(
-                          icon: Icons.backspace_outlined,
+                          icon: Icons.replay,
                           iconColor:
-                              darkMode ? Colors.green : Colors.black),
+                              darkMode ? Color.fromRGBO(241, 241, 241, 100) : Colors.black),
                       _buttonRounded(title: '0'),
-                      _buttonRounded(title: ','),
+                      _buttonRounded(title: '.'),
                     
                       _buttonRounded(
                           title: '=',
-                          textColor: darkMode ? Colors.green : Colors.redAccent)
+                          textColor: darkMode ? Color.fromRGBO(233, 102, 104, 100) :Color.fromRGBO(233, 102, 104, 100))
                     ],
                   )
                 ]),
               ),
-            ],
-          ),
+            ),
+         
+          ],
         ),
       ),
     );
@@ -250,17 +285,27 @@ class _CalculatorState extends State<Calculator> {
       Color textColor}) {
     return GestureDetector(
       onTap: (){
+      setState(() {
+        if(title=="AC"){
+          title2="0";
+         
+        }else if(title== "="){
+          title2 = title;
+        }
+        else 
+              title2= title2 + title;
+            });
         calculation(title);
       },
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.only(left: 10, right: 2, bottom: 10),
         child: MyCalc(
-          darkMode: darkMode,
-          borderRadius: BorderRadius.circular(40),
+         darkMode: darkMode,
+         borderRadius: BorderRadius.circular(10),
           padding: EdgeInsets.all(padding),
           child: Container(
             width: padding * 2,
-            height: padding * 2,
+           // height: //padding * 2,
             child: Center(
                 child: title != null
                     ? Text(
@@ -269,14 +314,14 @@ class _CalculatorState extends State<Calculator> {
                             color: textColor != null
                                 ? textColor
                                 : darkMode
-                                    ? Colors.white
+                                    ? Color.fromRGBO(241, 241, 241, 100)
                                     : Colors.black,
                             fontSize: 20),
                       )
                     : Icon(
                         icon,
                         color: iconColor,
-                        size: 30,
+                        size: 20,
                       )),
           ),
         ),
@@ -323,7 +368,7 @@ class _CalculatorState extends State<Calculator> {
           ),
           Icon(
             Icons.nightlight_round,
-            color: darkMode ? Colors.green : Colors.grey,
+            color: darkMode ? Colors.white : Colors.white,
           ),
         ]),
       ),
@@ -368,25 +413,33 @@ class _MyCalcState extends State<MyCalc> {
       child: Container(
         padding: widget.padding,
         decoration: BoxDecoration(
-            color: darkMode ? colorDark : colorLight,
-            borderRadius: widget.borderRadius,
+          
+            color: darkMode ? Color.fromRGBO(39, 43, 51, 100) : Color.fromRGBO(247, 247, 247, 0.4),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+              border: Border.all(
+            color: darkMode ? Color.fromRGBO(39, 43, 51, 100) : Color.fromRGBO(214, 214, 214, 0.4),
+            width: .0,
+          ),
             boxShadow: _isPressed
                 ? null
-                : [
-                    BoxShadow(
-                      color:
-                          darkMode ? Colors.black54 : Colors.blueGrey.shade200,
-                      offset: Offset(4.0, 4.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 1.0,
-                    ),
-                    BoxShadow(
-                        color:
-                            darkMode ? Colors.blueGrey.shade700 : Colors.white,
-                        offset: Offset(-4.0, -4.0),
-                        blurRadius: 15.0,
-                        spreadRadius: 1.0)
-                  ]),
+                : 
+                [
+                    // BoxShadow(
+                    //   color:
+                    //       darkMode ? Colors.black12 : Colors.grey.shade100,
+                    //   offset: Offset(0.0, 0.0),
+                    //  // blurRadius: 1.0,
+                    //  // spreadRadius: 0.0,
+                    // ),
+                    // BoxShadow(
+                    //     color:
+                    //         darkMode ? Colors.black12 : Color.fromRGBO(247, 247, 247, 100),
+                    //     offset: Offset(1.0, 6.0),
+                    //     blurRadius: .0,
+                    //     spreadRadius: 1.0
+                    //     )
+                  ]
+                  ),
         child: widget.child,
       ),
     );
